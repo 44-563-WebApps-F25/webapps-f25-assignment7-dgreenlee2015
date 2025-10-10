@@ -87,6 +87,7 @@
                 document.getElementById("31"), document.getElementById("32"), document.getElementById("33"), document.getElementById("34"), document.getElementById("35"), document.getElementById("36"), document.getElementById("37"),
                 document.getElementById("41"), document.getElementById("42"), document.getElementById("43"), document.getElementById("44"), document.getElementById("45"), document.getElementById("46"), document.getElementById("47"),
                 document.getElementById("51"), document.getElementById("52"), document.getElementById("53"), document.getElementById("54"), document.getElementById("55"), document.getElementById("56"), document.getElementById("57")]
+                
                 var score = 0
                 var locationsVisited = 0
                 var lastLocation = 0
@@ -134,13 +135,17 @@
                                 score = score + 3
                             } 
                         }
-                        locationsVisited = locationsVisited + 1
                         console.log("Score: " + score)
                         scoreResult = document.getElementById("score")
                         scoreResult.innerHTML="Score is " + score
+                        
+                        locationsVisited = locationsVisited + 1
                         console.log("locationsVisited: " + locationsVisited)
                         locationsResult = document.getElementById("locations")
                         locationsResult.innerHTML=("Number of locations checked is " + locationsVisited)
+
+                        lastLocation = position
+                        console.log("Last Location: " + lastLocation)
                     }
                 }
 
@@ -170,7 +175,44 @@
 
                 function help()
                 {
+                    let tempArray = []
+                    let helpWord = ""
+                    document.getElementById("help").innerHTML = ""
+
                     console.log("HELP")
+                    
+                    tempArray.push(lastLocation + 1)
+                    tempArray.push(lastLocation - 1)
+                    tempArray.push(lastLocation + 7)
+                    //This one is wrong
+                    tempArray.push(lastLocation - 7)
+                    console.log("tempArray: " + tempArray)
+                    
+                    for(i = 0; i < tempArray.length; i++)
+                    {
+                        for(k = 0; k < silverLocations.length; k++)
+                        {
+                            if(tempArray[i] == silverLocations[k])
+                            {
+                                console.log("CLINK")
+                                helpWord = document.getElementById("help")
+                                helpWord.innerHTML="CLINK"
+                            }
+                        }
+                        if(tempArray[i] == snakeLocation)
+                        {
+                            console.log("RATTLE")
+                            helpWord = document.getElementById("help")
+                            helpWord.innerHTML="RATTLE"
+                        }
+                    }
+                    //Wrong because it never changes back to ""
+                    if(document.getElementById("help").innerHTML == "")
+                        {
+                            console.log("WIND")
+                            helpWord = document.getElementById("help")
+                            helpWord.innerHTML="WIND"
+                        }
                 }
             </script>
     </body>
