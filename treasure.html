@@ -22,14 +22,14 @@
 
             <div id="score">Score is zero</div>
 
-            <div onclick="help()">Click for help</div>
+            <div id=getHelp onclick="help()">Click for help</div>
 
             <div id="help">Help report</div>
             </div>
 
             <br>
 
-            <div class="container">
+            <div id="gameBoard" class="container">
                 <div class="row">
                     <div class="col-sm-1"><img src="cactus.jpg" id="11" onclick="check(0)" class="img-fluid" alt="cactus"></img_src></div>
                     <div class="col-sm-1"><img src="cactus.jpg" id="12" onclick="check(1)" class="img-fluid" alt="cactus"></img_src></div>
@@ -98,35 +98,44 @@
 
                 function check(position)
                 {
-                    setLocations(position)
+                    //setLocations(position)
                     if(gameOver == true)
                     {
                         console.log("Game Over")
+                        //document.getElementById("gameBoard").remove()
                     }
                     else
                     {
                         select = ids[position]
                         //console.log(select.src)
 
-                        /*
-                        if(position == rabbitLocation)
-                        {
-                            score = score + 1
-                            locationsVisited = locationsVisited + 1
-                        }
-                        */
                         if(position == goldLocation)
                         {
-                            console.log("You found GOLD")
+                            //console.log("You found GOLD")
+                            select.src = "gold.jpg"
                             score = score + 5
                         }
-                        if(position == snakeLocation)
+                        else if(silverLocations.includes(position))
                         {
-                            console.log("You found a SNAKE")
+                            //console.log("You found SILVER")
+                            select.src = "silver.jpg"
+                            score = score + 3
+                        }
+                        else if(position == snakeLocation)
+                        {
+                            //console.log("You found a SNAKE")
+                            select.src = "snake.jpg"
                             score = score - 3
                             gameOver = true
-
+                            //document.getElementById("getHelp").remove()
+                            //document.getElementById("help").innerHTML = "Game Over"
                         }
+                        else
+                        {
+                            select.src = "rabbit.jpg"
+                            score = score + 1
+                        }
+                        /*
                         for(i = 0; i < silverLocations.length; i++)
                         {
                             if(position == silverLocations[i])
@@ -135,23 +144,25 @@
                                 score = score + 3
                             } 
                         }
-                        console.log("Score: " + score)
-                        scoreResult = document.getElementById("score")
-                        scoreResult.innerHTML="Score is " + score
+                        */
+                        //console.log("Score: " + score)
+                        document.getElementById("score").innerHTML="Score is " + score
                         
                         locationsVisited = locationsVisited + 1
-                        console.log("locationsVisited: " + locationsVisited)
-                        locationsResult = document.getElementById("locations")
-                        locationsResult.innerHTML=("Number of locations checked is " + locationsVisited)
+                        //console.log("locationsVisited: " + locationsVisited)
+                        document.getElementById("locations").innerHTML=("Number of locations checked is " + locationsVisited)
 
                         lastLocation = position
                         console.log("Last Location: " + lastLocation)
                     }
                 }
-
+                /*
                 function setLocations(position)
                 {
                     select = ids[position]
+                    
+                    select.src="rabbit.jpg"
+                    select.alt="rabbit"
                     
                     if(position == goldLocation)
                     {
@@ -172,8 +183,8 @@
                         } 
                     }
                 }
-
-                function help()
+                */
+                function help(position)
                 {
                     let tempArray = []
                     let helpWord = ""
@@ -181,13 +192,13 @@
 
                     console.log("HELP")
                     
-                    tempArray.push(lastLocation + 1)
-                    tempArray.push(lastLocation - 1)
-                    tempArray.push(lastLocation + 7)
-                    //This one is wrong
-                    tempArray.push(lastLocation - 7)
+                    tempArray.push((lastLocation + 1) % 35) // right
+                    tempArray.push((lastLocation + 34) % 35) // left
+                    tempArray.push((lastLocation + 7) % 35) // down
+                    tempArray.push((lastLocation + 28) % 35) // up
                     console.log("tempArray: " + tempArray)
                     
+
                     for(i = 0; i < tempArray.length; i++)
                     {
                         for(k = 0; k < silverLocations.length; k++)
@@ -206,7 +217,6 @@
                             helpWord.innerHTML="RATTLE"
                         }
                     }
-                    //Wrong because it never changes back to ""
                     if(document.getElementById("help").innerHTML == "")
                         {
                             console.log("WIND")
