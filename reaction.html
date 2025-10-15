@@ -15,21 +15,41 @@
 
   <body>
 
-    <h2>Dustin Greenlee reaction timer</h2>
+    <div class="container">
+      <h2>Dustin Greenlee reaction timer</h2>
+    </div>
 
-    <div id="target">Your time</div>
-    <div id="countdown">Count</div>
+    <br><br>
 
-    <button type="button" class="btn btn-primary" onclick="buttonPress2()">Start Timer</button>
-    <button type="button" class="btn btn-primary" onclick="recordReact()">React Now</button>
-    
+    <div class="container">
+      <div id="target">Your time</div>
+      <br>
+      <div id="countdown">Count</div>
+      <br>
+
+      <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
+      <button type="button" class="btn btn-primary" onclick="recordReact()">React Now</button>
+    </div>
+
     <script>
-      var myTime = undefined
+      let myTime = undefined
+
+      cntdown = document.getElementById("countdown")
+      tgt = document.getElementById("target")
 
       function recordReact()
       {
         myTime = Date.now()
         console.log(myTime)
+      }
+
+      function startTime()
+      {
+        for(let i = 0; i <= 3; i++)
+        {
+          console.log("loop #: " + i)
+          setTimeout(function() {document.getElementById("countdown").innerHTML = i}, (3-i)*1000)
+        }
       }
     </script>
 

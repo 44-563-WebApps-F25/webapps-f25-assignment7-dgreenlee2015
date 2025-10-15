@@ -98,92 +98,46 @@
 
                 function check(position)
                 {
-                    //setLocations(position)
                     if(gameOver == true)
                     {
                         console.log("Game Over")
-                        //document.getElementById("gameBoard").remove()
                     }
                     else
                     {
                         select = ids[position]
-                        //console.log(select.src)
 
                         if(position == goldLocation)
                         {
-                            //console.log("You found GOLD")
                             select.src = "gold.jpg"
                             score = score + 5
                         }
                         else if(silverLocations.includes(position))
                         {
-                            //console.log("You found SILVER")
                             select.src = "silver.jpg"
                             score = score + 3
                         }
                         else if(position == snakeLocation)
                         {
-                            //console.log("You found a SNAKE")
                             select.src = "snake.jpg"
                             score = score - 3
                             gameOver = true
-                            //document.getElementById("getHelp").remove()
-                            //document.getElementById("help").innerHTML = "Game Over"
                         }
                         else
                         {
                             select.src = "rabbit.jpg"
                             score = score + 1
                         }
-                        /*
-                        for(i = 0; i < silverLocations.length; i++)
-                        {
-                            if(position == silverLocations[i])
-                            {
-                                console.log("You found SILVER")
-                                score = score + 3
-                            } 
-                        }
-                        */
-                        //console.log("Score: " + score)
                         document.getElementById("score").innerHTML="Score is " + score
                         
                         locationsVisited = locationsVisited + 1
-                        //console.log("locationsVisited: " + locationsVisited)
+                        
                         document.getElementById("locations").innerHTML=("Number of locations checked is " + locationsVisited)
 
                         lastLocation = position
                         console.log("Last Location: " + lastLocation)
                     }
                 }
-                /*
-                function setLocations(position)
-                {
-                    select = ids[position]
-                    
-                    select.src="rabbit.jpg"
-                    select.alt="rabbit"
-                    
-                    if(position == goldLocation)
-                    {
-                        select.src="gold.jpg"
-                        select.alt="gold"
-                    }
-                    if(position == snakeLocation)
-                    {
-                        select.src="snake.jpg"
-                        select.alt="snake"
-                    }
-                    for(i = 0; i < silverLocations.length; i++)
-                    {
-                        if(position == silverLocations[i])
-                        {
-                            select.src="silver.jpg"
-                            select.alt="silver"
-                        } 
-                    }
-                }
-                */
+                
                 function help(position)
                 {
                     let tempArray = []
