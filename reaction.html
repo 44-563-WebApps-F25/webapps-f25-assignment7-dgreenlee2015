@@ -48,8 +48,20 @@
         for(let i = 0; i <= 3; i++)
         {
           console.log("loop #: " + i)
-          setTimeout(function() {document.getElementById("countdown").innerHTML = i}, (3-i)*1000)
+          setTimeout(function() {cntdown.innerHTML = i}, (3-i)*1000)
         }
+        setTimeout(function() {
+          if(myTime == undefined)
+          {
+            tgt.innerHTML = "Too Slow"
+          }
+          else
+          {
+            let buttonTime = Date.now()
+            let result = buttonTime - myTime
+            tgt.innerHTML = "Time was " + result
+          }
+        }, 3000)
       }
     </script>
 
