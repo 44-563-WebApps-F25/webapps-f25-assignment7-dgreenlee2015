@@ -3,6 +3,7 @@
 An assignment on java script modifying the DOM and using anonymous callback functions.
 
 Hosted at:  https://44-563-webapps-f25.github.io/webapps-f25-assignment7-dgreenlee2015/treasure.html
+<br>
             https://44-563-webapps-f25.github.io/webapps-f25-assignment7-dgreenlee2015/reaction.html
+<br>
             https://44-563-webapps-f25.github.io/webapps-f25-assignment7-dgreenlee2015/listy.html
-            
