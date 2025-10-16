@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Timer Game</title>
+    <title>Reflex Game</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -16,7 +16,7 @@
   <body>
 
     <div class="container">
-      <h2>Dustin Greenlee reaction timer</h2>
+      <h2>Dustin Greenlee Reflexes</h2>
     </div>
 
     <br><br>
@@ -24,27 +24,27 @@
     <div class="container">
       <div id="target">Your time</div>
       <br>
-      <div id="countdown">Count</div>
+      <div id="counter">Count</div>
       <br>
 
-      <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
-      <button type="button" class="btn btn-primary" onclick="recordReact()">React Now</button>
+      <button type="button" class="btn btn-primary" onclick="beginTime()">Go</button>
+      <button type="button" class="btn btn-primary" onclick="recordTime()">Halt</button>
     </div>
 
     <script>
-      let myTime = undefined
+      let haltTime = undefined
 
-      let cntdown = document.getElementById("countdown")
+      let cntdown = document.getElementById("counter")
       let tgt = document.getElementById("target")
       let randomNumber = Math.floor(Math.random() * 9) + 2
 
-      function recordReact()
+      function recordTime()
       {
-        myTime = Date.now()
-        console.log(myTime)
+        haltTime = Date.now()
+        console.log(haltTime)
       }
 
-      function startTime()
+      function beginTime()
       {
         for(let i = 0; i <= randomNumber; i++)
         {
@@ -52,17 +52,17 @@
           setTimeout(function() {cntdown.innerHTML = i}, (randomNumber-i)*1000)
         }
         setTimeout(function() {
-          if(myTime == undefined)
+          if(haltTime == undefined)
           {
-            tgt.innerHTML = "Too Slow"
+            tgt.innerHTML = "Not soon enough"
           }
           else
           {
-            let buttonTime = Date.now()
-            let result = buttonTime - myTime
+            let targetTime = Date.now()
+            let result = targetTime - haltTime
             tgt.innerHTML = "Time was " + result
           }
-        }, 3000)
+        }, 5000)
       }
     </script>
 

@@ -70,8 +70,10 @@
 			}
 			if(removed == false && listyItems.length >= 9)
 			{
-				console.log("Removed the first Item: " + listyItems[0].innerHTML)
-				listyItems[0].remove()
+				let randomItem = Math.floor(Math.random() * listyItems.length)
+
+				console.log("Removed the first Item: " + listyItems[randomItem].innerHTML)
+				listyItems[randomItem].remove()
 			}
 
 			/* add it to the container */

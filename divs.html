@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Items Manipulation</title>
+
+		<style>
+			.flex-container
+			{
+				display: flex;  flex-direction:row;
+				background-color: red;
+			}
+
+			.flex-container > div
+			{  /*div children of the flex container*/
+				background-color: #f1f1f1; 
+				margin: 10px;  padding: 20px;  font-size: 30px;
+			}
+
+			/* Responsive layout */
+			@media (max-width: 600px)
+			{ 
+				.flex-container
+				{
+					flex-direction:column;
+					background-color: green;
+				}
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<h2>Dustin Greenlee builds list with divs</h2>
+		
+		<input type="text" id="divName" class="col-sm-4">
+
+		<div class="flex-container" id="target">
+		  <div class="divlist">row item 1</div>
+		  <div class="divlist">row item 2</div>
+		  <div class="divlist">row item 3</div>
+		</div>
+	
+		<p> Press the button to create an new element of type div and then add it to the container.</p>
+		<button onclick="makeNewDiv()">Add End</button>
+        <button onclick="addFront()">Add Front</button>
+        <button onclick="remove()">Remove</button>
+	
+	</body>
+	<script>
+        function remove()
+        {
+            let divListItems = document.getElementsByClassName("divlist")
+
+            if(divListItems.length > 0)
+            {
+                console.log("Remove Item")
+                divListItems[Math.floor(divListItems.length/2)].remove()
+            }
+        }
+
+        function addFront()
+        {
+            /* make the div and its text */
+			let element = document.createElement("div")
+			element.innerHTML = document.getElementById("divName").value
+            element.className = "divlist"
+			element.style.color = "orange"
+
+            /* add it to the container */
+            let container = document.getElementById('target')
+            container.insertBefore(element, container.firstChild)
+        }
+
+		function makeNewDiv()
+		{
+			/* make the div and its text */
+			let element = document.createElement("div")
+			element.innerHTML = document.getElementById("divName").value
+			element.className = "divlist"
+			element.style.color = "orange"
+
+			/* add it to the container */
+			let container = document.getElementById('target')
+			container.appendChild(element)
+		}
+	</script>
+</html>	
