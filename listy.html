@@ -29,8 +29,6 @@
 
 	</head>
 
-
-
 	<body>
 		<h2>Dustin Greenlee builds a list</h2>
 		
@@ -45,20 +43,41 @@
 		<p> Press the button to create an new element of type div and then add it to the container.</p>
 		<button onclick="makeNewDiv()">Add one</button>
 	
-	
 	</body>
 	<script>
 		function makeNewDiv()
 		{
-		/* make the div and its text */
-		let element = document.createElement("div")
-		element.innerHTML = document.getElementById("divName").value
-		element.className = "listy"
-		element.style.color = "orange"
+			/* make the div and its text */
+			let element = document.createElement("div")
+			element.innerHTML = document.getElementById("divName").value
+			element.className = "listy"
+			element.style.color = "orange"
 
-		/* add it to the container */
-		let container = document.getElementById('target')
-		container.appendChild(element)
+			let listyItems = document.getElementsByClassName("listy")
+			let removed = false
+
+			if(listyItems.length >= 9)
+			{
+				for(let item of listyItems)
+				{
+					if(item.innerHTML == element.innerHTML)
+					{
+						item.remove()
+						console.log("Removed Duplicate: " + item.innerHTML)
+						removed = true
+					}
+				}
+			}
+			if(removed == false && listyItems.length >= 9)
+			{
+				console.log("Removed the first Item: " + listyItems[0].innerHTML)
+				listyItems[0].remove()
+			}
+
+			/* add it to the container */
+			let container = document.getElementById('target')
+			container.appendChild(element)
+			console.log("listyItems Length: " + listyItems.length)
 		}
 	</script>
 </html>	
