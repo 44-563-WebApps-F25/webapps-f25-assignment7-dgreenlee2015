@@ -47,10 +47,10 @@
       function beginTime()
       {
         
-        for(let i = 0; i <= 5; i++)
+        for(let i = 0; i <= randomNumber; i++)
         {
           console.log("loop #: " + i)
-          setTimeout(function() {cntdown.innerHTML = i}, (5-i)*1000)
+          setTimeout(function() {cntdown.innerHTML = i}, (randomNumber-i)*1000)
         }
         setTimeout(function() {
           if(haltTime == undefined)
@@ -63,7 +63,7 @@
             let result = targetTime - haltTime
             tgt.innerHTML = "Time was " + result
           }
-        }, 5000)
+        }, randomNumber * 1000)
       }
     </script>
 
