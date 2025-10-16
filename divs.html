@@ -44,9 +44,21 @@
 		<button onclick="makeNewDiv()">Add End</button>
         <button onclick="addFront()">Add Front</button>
         <button onclick="remove()">Remove</button>
+        <button onclick="duplicate()">Duplicate</button>
 	
 	</body>
 	<script>
+        function duplicate()
+        {
+            let divListItems = document.getElementsByClassName("divlist")
+            let randomItem = Math.floor(Math.random() * divListItems.length + 1)
+            clone = divListItems[randomItem].cloneNode(true)
+
+                console.log(clone)
+                let container = document.getElementById("target")
+                container.insertBefore(clone, container.firstChild)
+        }
+
         function remove()
         {
             let divListItems = document.getElementsByClassName("divlist")
